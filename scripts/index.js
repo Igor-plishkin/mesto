@@ -16,7 +16,7 @@ let popupSubmitBtn = popup.querySelector('.popup__submit-btn')
 
 function openPopup(){
   popup.classList.add('popup_opened')
-  page.classList.add('page_scroll-lock')
+  page.classList.add('page_scroll-lock') // При изменении overflow:hidden блока page, есть небольшой баг в виде исчезающей полоски прокрутки, немного режет глаз))
 
   popupInputName.value = profileName.textContent
   popupInputJob.value = profileJob.textContent
@@ -24,7 +24,7 @@ function openPopup(){
 
 function closePopup(){
   popup.classList.remove('popup_opened')
-  page.classList.remove('page_scroll-lock')
+  page.classList.remove('page_scroll-lock') 
 }
 
 function submitFormHandler(event){
