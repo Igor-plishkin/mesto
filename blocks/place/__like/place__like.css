@@ -1,0 +1,7 @@
+.place__like{
+  transition: opacity .5s;
+  cursor: pointer;
+}
+.place__like:hover{
+  opacity: .5;
+}
