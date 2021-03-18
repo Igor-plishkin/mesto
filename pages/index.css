@@ -1,12 +1,16 @@
 @import url('../vendor/normalize.css');
-@import url('../vendor/fonts/fonts.css');
+@import url('../vendor/fonts.css');
 @import url('../blocks/page/page.css');
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
+@import url('../blocks/logo/logo.css');
+@import url('../blocks/horizontal-line/horizontal-line.css');
+@import url('../blocks/main-content/main-content.css');
 @import url('../blocks/profile/profile.css');
 @import url('../blocks/profile/__wrapper/profile__wrapper.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__title-inner/profile__title-inner.css');
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/profile/__edit-btn/profile__edit-btn.css');
 @import url('../blocks/profile/__job/profile__job.css');
@@ -17,11 +21,10 @@
 @import url('../blocks/place/__footer/place__footer.css');
 @import url('../blocks/place/__like/place__like.css');
 @import url('../blocks/place/__name/place__name.css');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
-@import url('');
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copy/footer__copy.css');
+
+
 @import url('');
 @import url('');
 @import url('');
