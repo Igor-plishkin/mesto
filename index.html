@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
-
 <body class="page">
   <header class="header">
     <img class="logo header__logo" src="./images/logo.svg" alt="Место">
@@ -25,7 +24,6 @@
           <p class="profile__job">Исследователь океана</p>
         </div>
       </div>
-
       <button class="profile__add-btn"></button>
     </section>
     <section class="places">
@@ -76,9 +74,18 @@
   <footer class="footer">
     <p class="footer__copy">© 2020 Mesto Russia</p>
   </footer>
-
-
-
+  <div class="popup">
+    <div class="popup__overlay"></div>
+    <div class="popup__container">
+      <p class="popup__title">Редактировать профиль</p>
+      <button class="popup__close-btn"></button>
+      <form class="popup__form">
+        <input class="popup__input-name" type="text">
+        <input class="popup__input-job" type="text">
+        <button class="popup__submit-btn" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 

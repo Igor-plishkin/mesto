@@ -1,7 +1,7 @@
 .profile__wrapper{
   display: flex;
 }
-@media screen and (max-width: 710px){
+@media screen and (max-width: 930px){
   .profile__wrapper{
     margin-bottom: 36px;
   }
