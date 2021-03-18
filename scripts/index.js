@@ -31,8 +31,8 @@ function submitFormHandler(event){
 
   event.preventDefault()
 
-  profileJob.textContent = popupInputName.value
-  profileName.textContent = popupInputJob.value
+  profileJob.textContent = profileJob.value
+  profileName.textContent = popupInputName.value
 
   closePopup()
 }
