@@ -9,16 +9,15 @@
 </head>
 <body class="page">
   <header class="header">
-    <img class="logo header__logo" src="./images/logo.svg" alt="Место">
+    <div class="header__logo"></div>
   </header>
-  <div class="horizontal-line"></div>
   <main class="main-content">
     <section class="profile">
       <div class="profile__wrapper">
         <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
         <div class="profile__info">
           <div class="profile__title-inner">
-            <p class="profile__name">Жак-Ив Кусто</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button class="profile__edit-btn" type="button"></button>
           </div>
           <p class="profile__job">Исследователь океана</p>
@@ -27,48 +26,48 @@
       <button class="profile__add-btn" type="button"></button>
     </section>
     <section class="places">
-      <div class="place">
+      <article class="place">
         <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="place__footer">
-          <p class="place__name">Карачаевск</p>
+          <h3 class="place__name">Карачаевск</h3>
           <button class="place__like" type="button"></button>
         </div>
-      </div>
-      <div class="place">
+      </article>
+      <article class="place">
         <img class="place__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
         <div class="place__footer">
-          <p class="place__name">Гора Эльбрус</p>
+          <h3 class="place__name">Гора Эльбрус</h3>
           <button class="place__like" type="button"></button>
         </div>
-      </div>
+      </article>
+      <article class="place">
+        <img class="place__image" src="./images/dombai.jpg" alt="Домбай">
+        <div class="place__footer">
+          <h3 class="place__name">Домбай</h3>
+          <button class="place__like" type="button"></button>
+        </div>
+      </article>
+      <article class="place">
+        <img class="place__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+        <div class="place__footer">
+          <h3 class="place__name">Гора Эльбрус</h3>
+          <button class="place__like" type="button"></button>
+        </div>
+      </article>
       <div class="place">
         <img class="place__image" src="./images/dombai.jpg" alt="Домбай">
         <div class="place__footer">
-          <p class="place__name">Домбай</p>
+          <h3 class="place__name">Домбай</h3>
           <button class="place__like" type="button"></button>
         </div>
       </div>
-      <div class="place">
-        <img class="place__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="place__footer">
-          <p class="place__name">Гора Эльбрус</p>
-          <button class="place__like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
-        <img class="place__image" src="./images/dombai.jpg" alt="Домбай">
-        <div class="place__footer">
-          <p class="place__name">Домбай</p>
-          <button class="place__like" type="button"></button>
-        </div>
-      </div>
-      <div class="place">
+      <article class="place">
         <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="place__footer">
-          <p class="place__name">Карачаево-Черкессия</p>
+          <h3 class="place__name">Карачаево-Черкессия</h3>
           <button class="place__like" type="button"></button>
         </div>
-      </div>
+      </article>
     </section>
   </main>
   <footer class="footer">
@@ -76,11 +75,11 @@
   </footer>
   <div class="popup">
     <div class="popup__container">
-      <p class="popup__title">Редактировать профиль</p>
-      <button class="popup__close-btn" type="button"></button>
-      <form class="popup__form">
-        <input class="popup__input-name" type="text">
-        <input class="popup__input-job" type="text">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <button class="popup__close-btn" type="reset"></button>
+      <form class="popup__form" method="POST" name="profileNameForm">
+        <input class="popup__input-name" type="text" name="profileNameInput" placeholder="Имя">
+        <input class="popup__input-job" type="text" name="profileJobInput" placeholder="О себе">
         <button class="popup__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>

@@ -3,7 +3,7 @@
   margin: 0 auto;
   max-width: 918px;
   box-sizing: border-box;
-  /* border-bottom: 1px solid rgba(84, 84, 84, .7); */
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 @media screen and (max-width: 540px){
   .header{
