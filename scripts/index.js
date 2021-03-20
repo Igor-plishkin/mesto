@@ -1,3 +1,5 @@
+// Насчет точки с запятой, знаю тема холиварная)) Но если язык позволяет пользоваться такой фичей, разве это ошибка? Или же это просто стандарт для студентов практикума?
+
 
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
