@@ -8,8 +8,9 @@
   border: none;
   width: 40px;
   height: 40px;
-  top: -49px;
-  right: -49px;
+  top: -40px;
+  right: -40px;
+  transform: rotate(45deg);
   cursor: pointer;
   transition: opacity .5s;
 }
@@ -19,7 +20,7 @@
 @media screen and (max-width: 650px){
   .popup__close-btn{
     right: 0;
-    top: -39px;
+    top: -45px;
     width: 26px;
     height: 26px;
   }
