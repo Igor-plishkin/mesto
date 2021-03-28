@@ -3,4 +3,11 @@
   min-height: 282px;
   display: block;
   border-radius: 10px 10px 0 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  position: relative;
+
+  cursor: pointer;
 }

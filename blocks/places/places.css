@@ -1,22 +1,23 @@
 .places{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  /* Убрал явное определение строк, чтобы при удалении всех карточек, и добавлении их заново при помощи формы, не появлялись лишние пустые грид-строки */
+  /* grid-template-rows: repeat(2, 1fr);  */
   gap: 17px;
   padding-bottom: 66px;
 }
 @media screen and (max-width: 930px){
   .places{
-    grid-template-columns: repeat(2, 282px);
-    grid-template-rows: repeat(3, 362px);
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(3, 1fr); */
     max-width: 581px;
     margin: 0 auto;
   }
 }
 @media screen and (max-width: 640px){
   .places{
-    grid-template-columns: repeat(1, 282px);
-    grid-template-rows: repeat(6, 362px);
+    grid-template-columns: repeat(1, 1fr);
+    /* grid-template-rows: repeat(6, 1fr); */
     max-width: 282px;
     padding-bottom: 48px;
   }

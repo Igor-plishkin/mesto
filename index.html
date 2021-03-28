@@ -26,64 +26,94 @@
       <button class="profile__add-btn" type="button"></button>
     </section>
     <section class="places">
-      <article class="place">
-        <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+      <!-- <article class="place">
+        <div class="place__image" style="background-image: url('./images/karachaevsk.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Карачаевск</h2>
           <button class="place__like" type="button"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+        <div class="place__image" style="background-image: url('./images/elbrus.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Гора Эльбрус</h2>
           <button class="place__like" type="button"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./images/dombai.jpg" alt="Домбай">
+        <div class="place__image" style="background-image: url('./images/dombai.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Домбай</h2>
           <button class="place__like" type="button"></button>
         </div>
       </article>
       <article class="place">
-        <img class="place__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+        <div class="place__image" style="background-image: url('./images/elbrus.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Гора Эльбрус</h2>
           <button class="place__like" type="button"></button>
         </div>
       </article>
       <div class="place">
-        <img class="place__image" src="./images/dombai.jpg" alt="Домбай">
+        <div class="place__image" style="background-image: url('./images/dombai.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Домбай</h2>
           <button class="place__like" type="button"></button>
         </div>
       </div>
       <article class="place">
-        <img class="place__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="place__image" style="background-image: url('./images/karachaevsk.jpg');"></div>
         <div class="place__footer">
           <h2 class="place__name">Карачаево-Черкессия</h2>
           <button class="place__like" type="button"></button>
         </div>
-      </article>
+      </article> -->
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copy">© 2020 Mesto Russia</p>
   </footer>
-  <div class="popup">
+  <div class="popup popup_edit-profile">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__close-btn" type="reset"></button>
       <form class="popup__form" method="POST" name="profileNameForm">
-        <input class="popup__input-name" type="text" name="profileNameInput" placeholder="Имя">
-        <input class="popup__input-job" type="text" name="profileJobInput" placeholder="О себе">
+        <input class="popup__input popup__input_name" type="text" name="profileNameInput" placeholder="Имя">
+        <input class="popup__input popup__input_job" type="text" name="profileJobInput" placeholder="О себе">
         <button class="popup__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>
   </div>
+  <div class="popup popup_add-place">
+    <div class="popup__container">
+      <h2 class="popup__title">Новое место</h2>
+      <button class="popup__close-btn" type="reset"></button>
+      <form class="popup__form" method="POST" name="profileNameForm">
+        <input class="popup__input popup__input_name" type="text" name="placeNameInput" placeholder="Название">
+        <input class="popup__input popup__input_url" type="text" name="placeUrlInput" placeholder="Ссылка на картинку">
+        <button class="popup__submit-btn" type="submit">Сохранить</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup popup_zoom-place">
+    <div class="popup__container-place">
+      <button class="popup__close-btn" type="button"></button>
+      <img class="popup__place-image" src="./images/elbrus.jpg">
+      <h2 class="popup__place-title"></h2>
+    </div>
+  </div>
+  <template class="template__place">
+    <article class="place">
+      <div class="place__image">
+        <button class="place__delete-btn" type="button"></button>
+      </div>
+      <div class="place__footer">
+        <h2 class="place__name">Карачаево-Черкессия</h2>
+        <button class="place__like" type="button"></button>
+      </div>
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
+
