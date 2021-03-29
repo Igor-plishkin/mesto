@@ -50,7 +50,7 @@ const zoomImagePopup = zoomPopup.querySelector('.popup__place-image');
 const zoomTitlePopup = zoomPopup.querySelector('.popup__place-title');
 const zoomCloseBtn = zoomPopup.querySelector('.popup__close-btn');
 
-function renderPlace(name, url) {
+function createCard(name, url) {
   const place = templatePlace.cloneNode(true);
   const placeName = place.querySelector('.place__name');
   const placeImage = place.querySelector('.place__image');
@@ -66,11 +66,7 @@ function renderPlace(name, url) {
 
   placeLike.addEventListener('click', () => {
 
-    if (placeLike.classList.contains('place__like_active')) {
-      placeLike.classList.remove('place__like_active');
-    } else {
-      placeLike.classList.add('place__like_active');
-    }
+    placeLike.classList.toggle('place__like_active');
 
   });
 
@@ -78,22 +74,19 @@ function renderPlace(name, url) {
     place.remove()
   });
 
-  places.prepend(place);
+  return place;
+}
+
+function addCard(container, cardElement) {
+  container.prepend(cardElement);
 }
 
 function renderInitialPlaces(arr) {
-  arr.forEach(item => renderPlace(item.name, item.link));
+  arr.forEach(item => addCard(places, createCard(item.name, item.link)));
 }
 
-function openProfilePopup() {
-  profileInputName.value = profileName.textContent;
-  profileInputJob.value = profileJob.textContent;
-
-  profilePopup.classList.add('popup_opened');
-}
-
-function openPlacePopup() {
-  placePopup.classList.add('popup_opened');
+function openPopup(popupName) {
+  popupName.classList.add('popup_opened');
 }
 
 function openZoomPopup(titleText, url) {
@@ -101,20 +94,11 @@ function openZoomPopup(titleText, url) {
   zoomImagePopup.alt = titleText;
   zoomTitlePopup.textContent = titleText;
 
-  zoomPopup.classList.add('popup_opened');
+  openPopup(zoomPopup);
 }
 
-
-function closeProfilePopup() {
-  profilePopup.classList.remove('popup_opened');
-}
-
-function closePlacePopup() {
-  placePopup.classList.remove('popup_opened');
-}
-
-function closeZoomPopup() {
-  zoomPopup.classList.remove('popup_opened');
+function closePopup(popupName) {
+  popupName.classList.remove('popup_opened');
 }
 
 function submitProfileFormHandler(event) {
@@ -124,29 +108,35 @@ function submitProfileFormHandler(event) {
   profileJob.textContent = profileInputJob.value;
   profileName.textContent = profileInputName.value;
 
-  closeProfilePopup();
+  closePopup(profilePopup);
 }
 
 function submitPlaceFormHandler(event) {
 
   event.preventDefault();
 
-  let newPlaceName = placeInputName.value;
-  let newPlaceUrl = placeInputUrl.value;
+  const newPlaceName = placeInputName.value;
+  const newPlaceUrl = placeInputUrl.value;
 
-  renderPlace(newPlaceName, newPlaceUrl);
+  addCard(places, createCard(newPlaceName, newPlaceUrl));
 
-  closePlacePopup();
+  closePopup(placePopup);
 }
 
 renderInitialPlaces(initialCards);
 
-editProfileBtn.addEventListener('click', openProfilePopup);
-addPlaceBtn.addEventListener('click', openPlacePopup);
+editProfileBtn.addEventListener('click', () => {
 
-profileCloseBtn.addEventListener('click', closeProfilePopup);
-placeCloseBtn.addEventListener('click', closePlacePopup);
-zoomCloseBtn.addEventListener('click', closeZoomPopup);
+  profileInputName.value = profileName.textContent;
+  profileInputJob.value = profileJob.textContent;
+
+  openPopup(profilePopup);
+});
+addPlaceBtn.addEventListener('click', () => openPopup(placePopup));
+
+profileCloseBtn.addEventListener('click', () => closePopup(profilePopup));
+placeCloseBtn.addEventListener('click', () => closePopup(placePopup));
+zoomCloseBtn.addEventListener('click', () => closePopup(zoomPopup));
 
 profileForm.addEventListener('submit', submitProfileFormHandler);
 placeForm.addEventListener('submit', submitPlaceFormHandler);
