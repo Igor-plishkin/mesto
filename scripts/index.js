@@ -55,25 +55,27 @@ function createCard(name, url) {
   const placeName = place.querySelector('.place__name');
   const placeImage = place.querySelector('.place__image');
   const placeLike = place.querySelector('.place__like');
+  const placeDeleteBtn = place.querySelector('.place__delete-btn')
+
 
   placeName.textContent = name;
   placeImage.style.backgroundImage = `url(${url})`;
 
-  // Решил использовать этот способ удаления карточки, вместо остановки всплытия события на конпке place__delete-btn
+  placeImage.addEventListener('click', () => {
 
-  placeImage.addEventListener('click', (event) => {
-
-    if (event.target.classList.contains('place__delete-btn')) {
-      place.remove();
-    } else {
       openZoomPopup(name, url);
-    }
 
   });
 
   placeLike.addEventListener('click', () => {
 
     placeLike.classList.toggle('place__like_active');
+
+  });
+
+  placeDeleteBtn.addEventListener('click', () => {
+
+    place.remove();
 
   });
 
@@ -122,6 +124,8 @@ function submitPlaceFormHandler(event) {
   const newPlaceUrl = placeInputUrl.value;
 
   addCard(places, createCard(newPlaceName, newPlaceUrl));
+
+  placeForm.reset();
 
   closePopup(placePopup);
 }
