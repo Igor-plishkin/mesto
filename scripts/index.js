@@ -102,6 +102,17 @@ function fillProfilePopup() {
 
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closePopup(popupName);
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('popup')){
+      closePopup(popupName);
+    }
+  });
 }
 
 function openZoomPopup(titleText, url) {
@@ -110,6 +121,10 @@ function openZoomPopup(titleText, url) {
   zoomTitlePopup.textContent = titleText;
 
   openPopup(zoomPopup);
+}
+
+function closePopupByEscButton(event) {
+
 }
 
 function closePopup(popupName) {
@@ -155,6 +170,7 @@ zoomCloseBtn.addEventListener('click', () => closePopup(zoomPopup));
 
 profileForm.addEventListener('submit', submitProfileFormHandler);
 placeForm.addEventListener('submit', submitPlaceFormHandler);
+
 
 // Пришлось вызвать заполнение инпутов при загрузке страницы, чтобы корректноработала функция toggleButtonState при первом открытии попапа
 fillProfilePopup();
