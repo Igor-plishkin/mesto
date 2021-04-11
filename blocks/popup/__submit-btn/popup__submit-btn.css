@@ -9,7 +9,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 400;
-  transition: all .5s;
+  transition: background .5s;
 }
 .popup__submit-btn:hover{
   background-color: rgba(0, 0, 0, .8);

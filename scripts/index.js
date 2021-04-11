@@ -25,6 +25,8 @@ const initialCards = [
   }
 ];
 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const editProfileBtn = document.querySelector('.profile__edit-btn');
@@ -103,16 +105,8 @@ function fillProfilePopup() {
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      closePopup(popupName);
-    }
-  });
-  document.addEventListener('click', (event) => {
-    if (event.target.classList.contains('popup')){
-      closePopup(popupName);
-    }
-  });
+  document.addEventListener('keydown', closePopupByEscButton);
+  document.addEventListener('click', closePopupByClickOnOverlay);
 }
 
 function openZoomPopup(titleText, url) {
@@ -124,11 +118,31 @@ function openZoomPopup(titleText, url) {
 }
 
 function closePopupByEscButton(event) {
+  if (event.key === 'Escape') {
+    // Не знаю как передать popupName в closePopup(), чтобы потом удалить слушатель
+    popupList.forEach(popupItem => {
+      if (popupItem.classList.contains('popup_opened')) {
+        closePopup(popupItem);
+      }
+    });
+  }
+}
 
+function closePopupByClickOnOverlay(event) {
+  if (event.target.classList.contains('popup')) {
+    popupList.forEach(popupItem => {
+      if (popupItem.classList.contains('popup_opened')) {
+        closePopup(popupItem);
+      }
+    });
+  }
 }
 
 function closePopup(popupName) {
   popupName.classList.remove('popup_opened');
+
+  document.removeEventListener('keydown', closePopupByEscButton);
+  document.removeEventListener('click', closePopupByClickOnOverlay);
 }
 
 function submitProfileFormHandler(event) {

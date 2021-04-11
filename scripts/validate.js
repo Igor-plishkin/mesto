@@ -64,6 +64,7 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, ina
 const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
+//что то мне кажется, я немного не правильно передаю параметры в функции))
   formList.forEach((formElement) =>
     setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass)
   );
