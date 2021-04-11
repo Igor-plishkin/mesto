@@ -63,7 +63,7 @@ function createCard(name, url) {
 
   placeImage.addEventListener('click', () => {
 
-      openZoomPopup(name, url);
+    openZoomPopup(name, url);
 
   });
 
@@ -90,6 +90,16 @@ function renderInitialPlaces(arr) {
   arr.forEach(item => addCard(places, createCard(item.name, item.link)));
 }
 
+function changeProfileData() {
+  profileJob.textContent = profileInputJob.value;
+  profileName.textContent = profileInputName.value;
+}
+
+function fillProfilePopup() {
+  profileInputName.value = profileName.textContent;
+  profileInputJob.value = profileJob.textContent;
+}
+
 function openPopup(popupName) {
   popupName.classList.add('popup_opened');
 }
@@ -110,8 +120,7 @@ function submitProfileFormHandler(event) {
 
   event.preventDefault();
 
-  profileJob.textContent = profileInputJob.value;
-  profileName.textContent = profileInputName.value;
+  changeProfileData();
 
   closePopup(profilePopup);
 }
@@ -134,8 +143,7 @@ renderInitialPlaces(initialCards);
 
 editProfileBtn.addEventListener('click', () => {
 
-  profileInputName.value = profileName.textContent;
-  profileInputJob.value = profileJob.textContent;
+  fillProfilePopup();
 
   openPopup(profilePopup);
 });
@@ -147,4 +155,7 @@ zoomCloseBtn.addEventListener('click', () => closePopup(zoomPopup));
 
 profileForm.addEventListener('submit', submitProfileFormHandler);
 placeForm.addEventListener('submit', submitPlaceFormHandler);
+
+// Пришлось вызвать заполнение инпутов при загрузке страницы, чтобы корректноработала функция toggleButtonState при первом открытии попапа
+fillProfilePopup();
 

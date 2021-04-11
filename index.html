@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
+
 <body class="page">
   <header class="header">
     <div class="header__logo"></div>
@@ -35,9 +37,15 @@
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <button class="popup__close-btn" type="reset"></button>
-      <form class="popup__form" method="POST" name="profileNameForm">
-        <input class="popup__input popup__input_name" type="text" name="profileNameInput" placeholder="Имя">
-        <input class="popup__input popup__input_job" type="text" name="profileJobInput" placeholder="О себе">
+      <form class="popup__form" method="POST" name="profileNameForm" novalidate>
+        <div class="popup__form-field">
+          <input class="popup__input popup__input_name" id="profile-name" type="text" name="profileNameInput" placeholder="Имя" required minlength="2" maxlength="40">
+          <span class="popup__error" id="profile-name-error"></span>
+        </div>
+        <div class="popup__form-field">
+          <input class="popup__input popup__input_job" id="profile-job" type="text" name="profileJobInput" placeholder="О себе" required minlength="2" maxlength="200">
+          <span class="popup__error" id="profile-job-error"></span>
+        </div>
         <button class="popup__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -46,9 +54,15 @@
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
       <button class="popup__close-btn" type="reset"></button>
-      <form class="popup__form" method="POST" name="profileNameForm">
-        <input class="popup__input popup__input_name" type="text" name="placeNameInput" placeholder="Название">
-        <input class="popup__input popup__input_url" type="url" name="placeUrlInput" placeholder="Ссылка на картинку">
+      <form class="popup__form" method="POST" name="placeNameForm" novalidate>
+        <div class="popup__form-field">
+          <input class="popup__input popup__input_name" id="place-name" type="text" name="placeNameInput" placeholder="Название" required minlength="2" maxlength="30">
+          <span class="popup__error" id="place-name-error">Ошибка</span>
+        </div>
+        <div class="popup__form-field">
+          <input class="popup__input popup__input_url" id="place-url" type="url" name="placeUrlInput" placeholder="Ссылка на картинку" required>
+          <span class="popup__error" id="place-url-error"></span>
+        </div>
         <button class="popup__submit-btn" type="submit">Сохранить</button>
       </form>
     </div>
@@ -72,6 +86,6 @@
     </article>
   </template>
   <script src="./scripts/index.js"></script>
+  <script src="./scripts/validate.js"></script>
 </body>
 </html>
-
