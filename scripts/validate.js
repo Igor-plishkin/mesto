@@ -10,7 +10,7 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
   }
 };
 
-const hasInvalidInput= (inputList) => inputList.some(inputElement => !inputElement.validity.valid);
+const hasInvalidInput = (inputList) => inputList.some(inputElement => !inputElement.validity.valid);
 
 const showInputError = (formElement, inputElement, errorMessage, inputErrorClass, errorClass) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -43,12 +43,17 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass, errorCla
 };
 
 const setEventListeners = (formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass) => {
-  formElement.addEventListener('submit', (event) => {
-    event.preventDefault();
-  });
-
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
+
+  formElement.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    //Нашел такое решение бага с активной кнопкой при пустых полях, после reset'а формы
+    if (formElement.name === 'placeNameForm') {
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+    }
+  });
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
@@ -64,12 +69,10 @@ const setEventListeners = (formElement, inputSelector, submitButtonSelector, ina
 const enableValidation = ({ formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass }) => {
   const formList = Array.from(document.querySelectorAll(formSelector));
 
-//что то мне кажется, я немного не правильно передаю параметры в функции))
   formList.forEach((formElement) =>
     setEventListeners(formElement, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass)
   );
 };
-
 
 enableValidation({
   formSelector: '.popup__form',

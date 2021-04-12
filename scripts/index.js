@@ -1,95 +1,68 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const editProfileBtn = document.querySelector('.profile__edit-btn');
-const addPlaceBtn = document.querySelector('.profile__add-btn');
+const btnEditorProfile = document.querySelector('.profile__edit-btn');
+const newPlaceBtn = document.querySelector('.profile__add-btn');
+// Поменял во все названия с place на card
+const cardsGridTemplate = document.querySelector('.places');
+const templateCard = document.querySelector('.template__place').content.querySelector('.place');
 
-const places = document.querySelector('.places');
-const templatePlace = document.querySelector('.template__place').content.querySelector('.place');
+const popupProfile = document.querySelector('.popup_edit-profile');
+const profileInputName = popupProfile.querySelector('.popup__input_name');
+const profileInputJob = popupProfile.querySelector('.popup__input_job');
+const profileCloseBtn = popupProfile.querySelector('.popup__close-btn');
+const profileForm = popupProfile.querySelector('.popup__form');
 
-const profilePopup = document.querySelector('.popup_edit-profile');
-const profileInputName = profilePopup.querySelector('.popup__input_name');
-const profileInputJob = profilePopup.querySelector('.popup__input_job');
-const profileCloseBtn = profilePopup.querySelector('.popup__close-btn');
-const profileForm = profilePopup.querySelector('.popup__form');
+const popupCard = document.querySelector('.popup_add-place');
+const cardInputName = popupCard.querySelector('.popup__input_name');
+const cardInputUrl = popupCard.querySelector('.popup__input_url');
+const cardCloseBtn = popupCard.querySelector('.popup__close-btn');
+const cardForm = popupCard.querySelector('.popup__form');
 
-const placePopup = document.querySelector('.popup_add-place');
-const placeInputName = placePopup.querySelector('.popup__input_name');
-const placeInputUrl = placePopup.querySelector('.popup__input_url');
-const placeCloseBtn = placePopup.querySelector('.popup__close-btn');
-const placeForm = placePopup.querySelector('.popup__form');
-
-const zoomPopup = document.querySelector('.popup_zoom-place');
-const zoomImagePopup = zoomPopup.querySelector('.popup__place-image');
-const zoomTitlePopup = zoomPopup.querySelector('.popup__place-title');
-const zoomCloseBtn = zoomPopup.querySelector('.popup__close-btn');
+const popupZoomedCard = document.querySelector('.popup_zoom-place');
+const zoomedImage = popupZoomedCard.querySelector('.popup__place-image');
+const titleOfZoomedCard = popupZoomedCard.querySelector('.popup__place-title');
+const zoomedCardCloseBtn = popupZoomedCard.querySelector('.popup__close-btn');
 
 function createCard(name, url) {
-  const place = templatePlace.cloneNode(true);
-  const placeName = place.querySelector('.place__name');
-  const placeImage = place.querySelector('.place__image');
-  const placeLike = place.querySelector('.place__like');
-  const placeDeleteBtn = place.querySelector('.place__delete-btn')
+  const card = templateCard.cloneNode(true);
+  const cardName = card.querySelector('.place__name');
+  const cardImage = card.querySelector('.place__image');
+  const cardLike = card.querySelector('.place__like');
+  const cardDeleterBtn = card.querySelector('.place__delete-btn')
 
 
-  placeName.textContent = name;
-  placeImage.style.backgroundImage = `url(${url})`;
+  cardName.textContent = name;
+  cardImage.style.backgroundImage = `url(${url})`;
 
-  placeImage.addEventListener('click', () => {
+  cardImage.addEventListener('click', () => {
 
-    openZoomPopup(name, url);
-
-  });
-
-  placeLike.addEventListener('click', () => {
-
-    placeLike.classList.toggle('place__like_active');
+    openpZoomedCard(name, url);
 
   });
 
-  placeDeleteBtn.addEventListener('click', () => {
+  cardLike.addEventListener('click', () => {
 
-    place.remove();
+    cardLike.classList.toggle('place__like_active');
 
   });
 
-  return place;
+  cardDeleterBtn.addEventListener('click', () => {
+
+    card.remove();
+
+  });
+
+  return card;
 }
 
 function addCard(container, cardElement) {
   container.prepend(cardElement);
 }
 
-function renderInitialPlaces(arr) {
-  arr.forEach(item => addCard(places, createCard(item.name, item.link)));
+function renderInitialCards(arr) {
+  arr.forEach(item => addCard(cardsGridTemplate, createCard(item.name, item.link)));
 }
 
 function changeProfileData() {
@@ -97,7 +70,7 @@ function changeProfileData() {
   profileName.textContent = profileInputName.value;
 }
 
-function fillProfilePopup() {
+function fillpopupProfile() {
   profileInputName.value = profileName.textContent;
   profileInputJob.value = profileJob.textContent;
 }
@@ -109,17 +82,16 @@ function openPopup(popupName) {
   document.addEventListener('click', closePopupByClickOnOverlay);
 }
 
-function openZoomPopup(titleText, url) {
-  zoomImagePopup.src = url;
-  zoomImagePopup.alt = titleText;
-  zoomTitlePopup.textContent = titleText;
+function openpZoomedCard(titleText, url) {
+  zoomedImage.src = url;
+  zoomedImage.alt = titleText;
+  titleOfZoomedCard.textContent = titleText;
 
-  openPopup(zoomPopup);
+  openPopup(popupZoomedCard);
 }
 
 function closePopupByEscButton(event) {
   if (event.key === 'Escape') {
-    // Не знаю как передать popupName в closePopup(), чтобы потом удалить слушатель
     popupList.forEach(popupItem => {
       if (popupItem.classList.contains('popup_opened')) {
         closePopup(popupItem);
@@ -145,47 +117,43 @@ function closePopup(popupName) {
   document.removeEventListener('click', closePopupByClickOnOverlay);
 }
 
+//Убрал лишние event.preventDefault(), т.к. в validate.js вешаются слушатели на submit форм вместе с отменой действий браузера
 function submitProfileFormHandler(event) {
-
-  event.preventDefault();
-
   changeProfileData();
 
-  closePopup(profilePopup);
+  closePopup(popupProfile);
 }
 
-function submitPlaceFormHandler(event) {
+function submitCardFormHandler(event) {
 
-  event.preventDefault();
+  const newPlaceName = cardInputName.value;
+  const newPlaceUrl = cardInputUrl.value;
 
-  const newPlaceName = placeInputName.value;
-  const newPlaceUrl = placeInputUrl.value;
+  addCard(cardsGridTemplate, createCard(newPlaceName, newPlaceUrl));
 
-  addCard(places, createCard(newPlaceName, newPlaceUrl));
+  // Проблему с деактивацией кнопки при добавлении карточки реализовал в validate.js
+  cardForm.reset();
 
-  placeForm.reset();
-
-  closePopup(placePopup);
+  closePopup(popupCard);
 }
 
-renderInitialPlaces(initialCards);
+btnEditorProfile.addEventListener('click', () => {
 
-editProfileBtn.addEventListener('click', () => {
+  fillpopupProfile();
 
-  fillProfilePopup();
-
-  openPopup(profilePopup);
+  openPopup(popupProfile);
 });
-addPlaceBtn.addEventListener('click', () => openPopup(placePopup));
+newPlaceBtn.addEventListener('click', () => openPopup(popupCard));
 
-profileCloseBtn.addEventListener('click', () => closePopup(profilePopup));
-placeCloseBtn.addEventListener('click', () => closePopup(placePopup));
-zoomCloseBtn.addEventListener('click', () => closePopup(zoomPopup));
+profileCloseBtn.addEventListener('click', () => closePopup(popupProfile));
+cardCloseBtn.addEventListener('click', () => closePopup(popupCard));
+zoomedCardCloseBtn.addEventListener('click', () => closePopup(popupZoomedCard));
 
 profileForm.addEventListener('submit', submitProfileFormHandler);
-placeForm.addEventListener('submit', submitPlaceFormHandler);
-
+cardForm.addEventListener('submit', submitCardFormHandler);
 
 // Пришлось вызвать заполнение инпутов при загрузке страницы, чтобы корректноработала функция toggleButtonState при первом открытии попапа
-fillProfilePopup();
+fillpopupProfile();
+
+renderInitialCards(initialCards);
 
