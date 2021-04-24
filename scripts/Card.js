@@ -45,34 +45,3 @@ export default class Card {
     return this.item;
   }
 }
-// function createCard(name, url) {
-//   const card = templateCard.cloneNode(true);
-//   const cardName = card.querySelector('.place__name');
-//   const cardImage = card.querySelector('.place__image');
-//   const cardLike = card.querySelector('.place__like');
-//   const cardDeleterBtn = card.querySelector('.place__delete-btn');
-
-
-//   cardName.textContent = name;
-//   cardImage.style.backgroundImage = `url(${url})`;
-
-//   cardImage.addEventListener('click', () => {
-
-//     openpZoomedCard(name, url);
-
-//   });
-
-//   cardLike.addEventListener('click', () => {
-
-//     cardLike.classList.toggle('place__like_active');
-
-//   });
-
-//   cardDeleterBtn.addEventListener('click', () => {
-
-//     card.remove();
-
-//   });
-
-//   return card;
-// }
