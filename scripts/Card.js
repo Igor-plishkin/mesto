@@ -1,3 +1,5 @@
+import {ZoomedCardPopup} from './ZoomedCardPopup.js'
+
 export default class Card {
   constructor(name, url, templateSelector, cardSelector) {
     this._name = name;
@@ -22,7 +24,9 @@ export default class Card {
     const cardDeleterBtn = this.item.querySelector('.place__delete-btn');
 
     cardImage.addEventListener('click', () => {
-      openZoomPopup(this._name, this._url)
+      const Popup = new ZoomedCardPopup(document.querySelector('.popup_zoom-place'), this._name, this._url);
+
+      Popup.openPopup();
     });
 
     cardLike.addEventListener('click', () => {
