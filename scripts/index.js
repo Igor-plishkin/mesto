@@ -1,3 +1,7 @@
+import { initialCards } from './initial-cards.js'
+import Card from './Card.js'
+
+
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
 const profileName = document.querySelector('.profile__name');
@@ -5,8 +9,7 @@ const profileJob = document.querySelector('.profile__job');
 const btnEditorProfile = document.querySelector('.profile__edit-btn');
 const newPlaceBtn = document.querySelector('.profile__add-btn');
 // Поменял во все названия с place на card
-const cardsGridTemplate = document.querySelector('.places');
-const templateCard = document.querySelector('.template__place').content.querySelector('.place');
+
 
 const popupProfile = document.querySelector('.popup_edit-profile');
 const profileInputName = popupProfile.querySelector('.popup__input_name');
@@ -57,13 +60,6 @@ function createCard(name, url) {
   return card;
 }
 
-function addCard(container, cardElement) {
-  container.prepend(cardElement);
-}
-
-function renderInitialCards(arr) {
-  arr.forEach(item => addCard(cardsGridTemplate, createCard(item.name, item.link)));
-}
 
 function changeProfileData() {
   profileJob.textContent = profileInputJob.value;
@@ -154,6 +150,23 @@ cardForm.addEventListener('submit', submitCardFormHandler);
 
 // Пришлось вызвать заполнение инпутов при загрузке страницы, чтобы корректноработала функция toggleButtonState при первом открытии попапа
 fillpopupProfile();
+
+
+
+const cardsGridTemplate = document.querySelector('.places');
+const templateCard = '.template__place';
+const cardSelector = '.place';
+
+function addCard(container, cardElement) {
+  container.prepend(cardElement);
+}
+
+function renderInitialCards(arr) {
+  arr.forEach(item => {
+    const cardItem = new Card(item.name, item.link, templateCard, cardSelector)
+    addCard(cardsGridTemplate, cardItem.getCard())
+  });
+}
 
 renderInitialCards(initialCards);
 
