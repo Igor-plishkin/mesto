@@ -1,6 +1,6 @@
 import {ZoomedCardPopup} from './ZoomedCardPopup.js'
 
-export default class Card {
+export class Card {
   constructor(name, url, templateSelector, cardSelector) {
     this._name = name;
     this._url = url;
