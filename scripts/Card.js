@@ -1,39 +1,35 @@
-import {ZoomedCardPopup} from './ZoomedCardPopup.js'
-
 export class Card {
-  constructor(name, url, templateSelector, cardSelector) {
-    this._name = name;
-    this._url = url;
+  constructor(data, templateSelector, cardSelector, openPopupHandler) {
+    this._name = data.name;
+    this._link = data.link;
     this._templateSelector = templateSelector;
     this._cardSelector = cardSelector;
-
-    this.item = document.querySelector(this._templateSelector).content.querySelector(this._cardSelector).cloneNode(true);
+    this._openPopupHandler = openPopupHandler;
   }
 
   _createCard() {
-    const cardName = this.item.querySelector('.place__name');
-    const cardImage = this.item.querySelector('.place__image');
+    this.item = document.querySelector(this._templateSelector).content.querySelector(this._cardSelector).cloneNode(true);
 
-    cardName.textContent = this._name;
-    cardImage.style.backgroundImage = `url(${this._url})`;
+    this._cardTitle = this.item.querySelector('.place__name');
+    this._cardImage = this.item.querySelector('.place__image');
+    this._cardLike = this.item.querySelector('.place__like');
+    this._cardDeleteBtn = this.item.querySelector('.place__delete-btn');
+
+    this._cardTitle.textContent = this._name;
+    this._cardImage.style.backgroundImage = `url(${this._link})`;
   }
 
   _setEventListeners() {
-    const cardImage = this.item.querySelector('.place__image');
-    const cardLike = this.item.querySelector('.place__like');
-    const cardDeleterBtn = this.item.querySelector('.place__delete-btn');
 
-    cardImage.addEventListener('click', () => {
-      const Popup = new ZoomedCardPopup(document.querySelector('.popup_zoom-place'), this._name, this._url);
-
-      Popup.openPopup();
+    this._cardImage.addEventListener('click', () => {
+      this._openPopupHandler(this._name, this._link);
     });
 
-    cardLike.addEventListener('click', () => {
-      cardLike.classList.toggle('place__like_active');
+    this._cardLike.addEventListener('click', () => {
+      this._cardLike.classList.toggle('place__like_active');
     });
 
-    cardDeleterBtn.addEventListener('click', () => {
+    this._cardDeleteBtn.addEventListener('click', () => {
       this.item.remove();
     });
   }
