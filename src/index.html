@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 
@@ -16,7 +15,7 @@
   <main class="main-content">
     <section class="profile">
       <div class="profile__wrapper">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
         <div class="profile__info">
           <div class="profile__title-inner">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -39,11 +38,13 @@
       <button class="popup__close-btn" type="reset"></button>
       <form class="popup__form" method="POST" name="profileNameForm" novalidate>
         <div class="popup__form-field">
-          <input class="popup__input popup__input_name" id="profile-name" type="text" name="profileNameInput" placeholder="Имя" required minlength="2" maxlength="40">
+          <input class="popup__input popup__input_name" id="profile-name" type="text" name="profileNameInput"
+            placeholder="Имя" required minlength="2" maxlength="40">
           <span class="popup__error" id="profile-name-error"></span>
         </div>
         <div class="popup__form-field">
-          <input class="popup__input popup__input_job" id="profile-job" type="text" name="profileJobInput" placeholder="О себе" required minlength="2" maxlength="200">
+          <input class="popup__input popup__input_job" id="profile-job" type="text" name="profileJobInput"
+            placeholder="О себе" required minlength="2" maxlength="200">
           <span class="popup__error" id="profile-job-error"></span>
         </div>
         <button class="popup__submit-btn" type="submit">Сохранить</button>
@@ -56,11 +57,13 @@
       <button class="popup__close-btn" type="reset"></button>
       <form class="popup__form" method="POST" name="placeNameForm" novalidate>
         <div class="popup__form-field">
-          <input class="popup__input popup__input_name" id="place-name" type="text" name="placeNameInput" placeholder="Название" required minlength="2" maxlength="30">
+          <input class="popup__input popup__input_name" id="place-name" type="text" name="placeNameInput"
+            placeholder="Название" required minlength="2" maxlength="30">
           <span class="popup__error" id="place-name-error">Ошибка</span>
         </div>
         <div class="popup__form-field">
-          <input class="popup__input popup__input_url" id="place-url" type="url" name="placeUrlInput" placeholder="Ссылка на картинку" required>
+          <input class="popup__input popup__input_url" id="place-url" type="url" name="placeUrlInput"
+            placeholder="Ссылка на картинку" required>
           <span class="popup__error" id="place-url-error"></span>
         </div>
         <button class="popup__submit-btn" type="submit">Сохранить</button>
@@ -70,7 +73,7 @@
   <div class="popup popup_zoom-place">
     <div class="popup__container-place">
       <button class="popup__close-btn" type="button"></button>
-      <img class="popup__place-image" src="./images/elbrus.jpg" alt="Эльбрус">
+      <img class="popup__place-image" src="#" alt="Эльбрус">
       <h2 class="popup__place-title"></h2>
     </div>
   </div>
@@ -85,7 +88,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="./scripts/index.js"></script>
-  <!-- <script type="module" src="./scripts/validate.js"></script> -->
 </body>
+
 </html>
