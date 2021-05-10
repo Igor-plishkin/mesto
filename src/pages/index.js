@@ -33,17 +33,18 @@ const cardValidator = new FormValidator(configValidation, popupAddCard.form);
 const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const cardItem = new Card(item, templateCardSelector, cardSelector, openZoomedCard);
-
-    cardsList.addItem(cardItem.getCard());
+    cardsList.addItem(createNewCard(item, templateCardSelector, cardSelector, openZoomedCard));
   }
 }, cardsGridTemplate);
 
+function createNewCard(data, templateCardSelector, cardSelector, openZoomHandler){
+  const cardItem = new Card(data, templateCardSelector, cardSelector, openZoomHandler);
+
+  return cardItem.getCard();
+}
 
 function addNewCard(inputsData) {
-  const newItemCard = new Card(inputsData, templateCardSelector, cardSelector, openZoomedCard);
-
-  cardsList.addItem(newItemCard.getCard());
+  cardsList.addItem(createNewCard(inputsData, templateCardSelector, cardSelector, openZoomedCard));
 }
 
 function changeProfileData(inputsData) {
@@ -58,18 +59,14 @@ function openZoomedCard(titleText, url) {
   popupZoomedCard.open(titleText, url)
 }
 
-function submitProfileFormHandler(event) {
-  event.preventDefault();
-
-  changeProfileData(popupProfile.getInputValues());
+function submitProfileFormHandler(data) {
+  changeProfileData(data);
 
   popupProfile.close();
 }
 
-function submitCardFormHandler(event) {
-  event.preventDefault();
-
-  addNewCard(popupAddCard.getInputValues());
+function submitCardFormHandler(data) {
+  addNewCard(data);
 
   popupAddCard.close();
 }

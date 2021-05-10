@@ -5,69 +5,44 @@ export class PopupWithForm extends Popup {
     super(popupSelector);
 
     this.form = this._popup.querySelector('.popup__form');
-    this._inputs = this._popup.querySelectorAll('.popup__input');
+    this._inputList = this._popup.querySelectorAll('.popup__input');
 
     this._submitHandler = submitHandler;
+    this._bindedSubmitHandler = this._handleSubmit.bind(this);
   }
-  //Понял в таком ключе эту функцию, что она должна возвращать значения всех инпутов
-  getInputValues() {
-    const inputValues = [];
 
-    this._inputs.forEach((input) => {
-      const inputItem = {
-        value: input.value,
-        inputId: input.id,
-      }
-      inputValues.push(inputItem);
+  _getInputValues() {
+    this._formValues = {};
+
+    this._inputList.forEach(input => {
+      this._formValues[input.name] = input.value;
     });
 
-    return this._transformToObj(inputValues);
+    return this._formValues;
   }
 
   setInputValues(data) {
-    this._inputs.forEach((input) => {
-      switch (input.id) {
-        case 'profile-name':
-          input.value = data.name;
-          break;
-        case 'profile-job':
-          input.value = data.about;
-          break;
+    this._inputList.forEach((input) => {
+      if (data.hasOwnProperty(input.name)) {
+        input.value = data[input.name];
       }
     });
   }
 
-  _transformToObj(arr) {
-    const data = {}
-
-    arr.forEach((input) => {
-      switch (input.inputId) {
-        case 'place-name':
-          data.name = input.value;
-          break;
-        case 'place-url':
-          data.link = input.value;
-          break;
-        case 'profile-name':
-          data.name = input.value;
-          break;
-        case 'profile-job':
-          data.about = input.value;
-          break;
-      }
-    });
-
-    return data;
+  _handleSubmit(event){
+    event.preventDefault();
+    console.log(this._getInputValues())
+    this._submitHandler(this._getInputValues())
   }
 
   setEventListeners() {
-    this.form.addEventListener('submit', this._submitHandler)
+    this.form.addEventListener('submit', this._bindedSubmitHandler)
 
     super.setEventListeners();
   }
 
   removeEventListeners() {
-    this.form.removeEventListener('submit', this._submitHandler)
+    this.form.removeEventListener('submit', this._bindedSubmitHandler)
 
     super.removeEventListeners();
   }

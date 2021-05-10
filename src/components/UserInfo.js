@@ -6,15 +6,15 @@ export class UserInfo{
 
   getUserInfo(){
     const userInfo = {
-      name: this.userName.textContent,
-      about: this.userAbout.textContent
+      profileName: this.userName.textContent,
+      profileAbout: this.userAbout.textContent
     };
 
     return userInfo;
   }
 
   setUserInfo(data){
-    this.userName.textContent = data.name;
-    this.userAbout.textContent = data.about;
+    this.userName.textContent = data.profileName;
+    this.userAbout.textContent = data.profileAbout;
   }
 }
