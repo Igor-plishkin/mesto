@@ -16,6 +16,8 @@
 
   transition: opacity .5s;
   cursor: pointer;
+
+  display: none;
 }
 .place__delete-btn:hover{
   opacity: .6;

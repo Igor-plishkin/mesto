@@ -9,6 +9,7 @@
   cursor: pointer;
   align-self: center;
   padding: 0;
+  margin-bottom: 3px;
 }
 .place__like:hover{
   opacity: .5;

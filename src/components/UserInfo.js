@@ -1,20 +1,23 @@
-export class UserInfo{
-  constructor({userNameSelector, userAboutSelector}){
+export class UserInfo {
+  constructor({ userNameSelector, userAboutSelector, userAvatarSelector }) {
     this.userName = document.querySelector(userNameSelector);
     this.userAbout = document.querySelector(userAboutSelector);
+    this.userAvatar = document.querySelector(userAvatarSelector);
   }
 
-  getUserInfo(){
+  getUserInfo() {
     const userInfo = {
-      profileName: this.userName.textContent,
-      profileAbout: this.userAbout.textContent
+      name: this.userName.textContent,
+      about: this.userAbout.textContent
     };
 
     return userInfo;
   }
 
-  setUserInfo(data){
-    this.userName.textContent = data.profileName;
-    this.userAbout.textContent = data.profileAbout;
+  setUserInfo(data) {
+    this.userName.textContent = data.name;
+    this.userAbout.textContent = data.about;
+
+    this.userAvatar.style.backgroundImage = `url('${data.avatar}')`;
   }
 }

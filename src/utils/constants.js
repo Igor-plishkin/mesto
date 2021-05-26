@@ -38,10 +38,13 @@ export const cardSelector = '.place';
 
 export const userInfoSelectors = {
   userNameSelector: '.profile__name',
-  userAboutSelector: '.profile__job'
+  userAboutSelector: '.profile__job',
+  userAvatarSelector: '.profile__avatar-btn',
 }
 
 export const popupZoomedSelector = '.popup_zoom-place';
 export const popupProfileSelector = '.popup_edit-profile';
 export const popupAddCardSelector = '.popup_add-place';
+export const popupDeleteCardSelector = '.popup_delete-card';
+export const popupAvatarSelector = '.popup_avatar';
 
